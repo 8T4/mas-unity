@@ -2,7 +2,33 @@
 
     <PropertyGroup>
         <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+        <PackageVersion>1.0.0-beta</PackageVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>MasUnity is a .net multi-agent system framework</Title>
+        <Authors>Yan Justino</Authors>
+        <Description>MasUnity is a .net framework based on MAS (multi-agent system framework) concepts for applying agents to solve IBIS-related problems (integrative business information systems), in an industry context.</Description>
+        <PackageProjectUrl>https://github.com/8T4/mas-unity</PackageProjectUrl>
+        <license>https://github.com/8T4/mas-unity/blob/main/LICENSE</license>
+        <PackageIcon>logo.png</PackageIcon>
+        <RepositoryUrl>https://github.com/8T4/mas-unity</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>MAS, MIBS, IBIS, DAI</PackageTags>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\docs\imgs\128w\logo.png">
+            <Pack>true</Pack>
+            <PackagePath>/</PackagePath>
+            <Link>logo.png</Link>
+        </None>
+    </ItemGroup>    
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
@@ -19,9 +45,4 @@
     <ItemGroup>
         <ProjectReference Include="..\MasUnity\MasUnity.csproj" />
     </ItemGroup>    
-
-    <ItemGroup>
-      <None Remove="masunity.css" />
-    </ItemGroup>
-
 </Project>
