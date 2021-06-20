@@ -18,6 +18,7 @@ namespace MasUnity.Agents
         protected override Task Run()
         {
             Task.Run(DoWork);
+            Report.UpdateLastExecution();
             return Task.CompletedTask;
         }
 
@@ -52,9 +53,9 @@ namespace MasUnity.Agents
             }               
             finally
             {
-                source.Dispose();
                 Report.UpdateLastExecution();
                 await Suspend().ConfigureAwait(false);
+                source.Dispose();
             }
         }
     }

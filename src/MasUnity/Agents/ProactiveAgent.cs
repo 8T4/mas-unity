@@ -25,6 +25,7 @@ namespace MasUnity.Agents
         protected override Task Run()
         {
             Task.Run(DoWork);
+            Report.UpdateLastExecution();
             return Task.CompletedTask;
         }
 
