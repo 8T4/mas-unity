@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="5.0.7" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="3.1.16" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MasUnity.HostedService\MasUnity.HostedService.csproj" />
+        <ProjectReference Include="..\MasUnity\MasUnity.csproj" />
+    </ItemGroup>
+
+
+</Project>
