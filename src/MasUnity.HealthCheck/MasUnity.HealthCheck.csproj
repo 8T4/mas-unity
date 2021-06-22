@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
-        <PackageVersion>1.0.0-beta</PackageVersion>
+        <PackageVersion>1.0.1-beta</PackageVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>MasUnity is a .net multi-agent system framework</Title>
         <Authors>Yan Justino</Authors>

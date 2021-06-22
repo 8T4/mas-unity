@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using FluentAssertions;
 using MasUnity.Decision;
 using MasUnity.Tests.Stubs;
@@ -16,48 +17,48 @@ namespace MasUnity.Tests.Decision
         }
         
         [Fact]
-        public void Test_agent_lifecycle()
+        public async Task Test_agent_lifecycle()
         {
             _stub.State.Value.Should().Be(AgentStates.Initiated);
-            _stub.Invoke();
+            await _stub.Invoke();
             _stub.State.Value.Should().Be(AgentStates.Active);
-            _stub.Suspend();
+            await _stub.Suspend();
             _stub.State.Value.Should().Be(AgentStates.Suspended);
-            _stub.Resume();
+            await _stub.Resume();
             _stub.State.Value.Should().Be(AgentStates.Active);
-            _stub.Wait();
+            await _stub.Wait();
             _stub.State.Value.Should().Be(AgentStates.Waiting); 
-            _stub.WakeUp();
+            await _stub.WakeUp();
             _stub.State.Value.Should().Be(AgentStates.Active);
-            _stub.Move();
+            await _stub.Move();
             _stub.State.Value.Should().Be(AgentStates.Transit); 
-            _stub.Execute();
+            await _stub.Execute();
             _stub.State.Value.Should().Be(AgentStates.Active);
-            _stub.Quit();
+            await _stub.Quit();
             _stub.State.Value.Should().Be(AgentStates.Deleted);
         }
         
         [Fact]
-        public void Test_agent_lifecycle_move_next()
+        public async Task Test_agent_lifecycle_move_next()
         {
             _stub.State.Value.Should().Be(AgentStates.Initiated);
-            _stub.Suspend();
+            await _stub.Suspend();
             _stub.State.Value.Should().Be(AgentStates.Initiated);
-            _stub.Suspend(new Exception());
+            await _stub.Suspend(new Exception());
             _stub.State.Value.Should().Be(AgentStates.Initiated);            
-            _stub.Resume();
+            await _stub.Resume();
             _stub.State.Value.Should().Be(AgentStates.Initiated);
-            _stub.Wait();
+            await _stub.Wait();
             _stub.State.Value.Should().Be(AgentStates.Initiated); 
-            _stub.WakeUp();
+            await _stub.WakeUp();
             _stub.State.Value.Should().Be(AgentStates.Initiated);
-            _stub.Move();
+            await _stub.Move();
             _stub.State.Value.Should().Be(AgentStates.Initiated); 
-            _stub.Execute();
+            await _stub.Execute();
             _stub.State.Value.Should().Be(AgentStates.Initiated);
-            _stub.Quit();
+            await _stub.Quit();
             _stub.State.Value.Should().Be(AgentStates.Deleted);
-            _stub.Invoke();
+            await _stub.Invoke();
             _stub.State.Value.Should().Be(AgentStates.Deleted);            
         }        
     }
