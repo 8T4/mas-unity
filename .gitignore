@@ -11,6 +11,9 @@
 *.sln.docstates
 *.DS_Store
 
+# Local publish file
+src/publish.sh
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
