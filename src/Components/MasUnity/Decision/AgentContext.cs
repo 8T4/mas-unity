@@ -2,8 +2,8 @@ namespace MasUnity.Decision
 {
     public struct AgentContext
     {
-        public AgentIdentity Identity { get; private set; }
-        public AgentState State { get; private set; }
+        public AgentIdentity Identity { get; }
+        public AgentState State { get; }
         
         public AgentContext(AgentIdentity identity, AgentState state)
         {
