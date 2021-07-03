@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MasUnity.Commons.Storages;
 using MasUnity.Decision;
 using MasUnity.Decision.Abstractions;
@@ -15,6 +16,16 @@ namespace MasUnity.Cluster
         public AgentInMemoryStorage():base()
         {
             Sequences = new Dictionary<string, int>();
+        }
+
+        public async Task Remove(string uri)
+        {
+            var agent = await Get(uri);
+            if ((agent != null) && (agent.State.Value != AgentStates.Active))
+            {
+                await agent.Quit();
+                await Delete(uri);
+            }
         }
 
         public AgentIdentity GetNextSequence(IAgent agent)

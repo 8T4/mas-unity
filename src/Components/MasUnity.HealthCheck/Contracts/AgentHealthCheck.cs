@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using MasUnity.Cluster;
@@ -20,9 +19,14 @@ namespace MasUnity.HealthCheck.Contracts
         {
             var agent = await Cluster.Get(context.Registration.Name).ConfigureAwait(false);
 
+            if (agent == null)
+            {
+                return new HealthCheckResult(HealthStatus.Degraded, "service was removed");
+            }
+
             return agent.Report.Result.IsSuccess
                 ? HealthCheckResult.Healthy($"service is ready")
-                : new HealthCheckResult(context.Registration.FailureStatus, "service is unhealthy");
+                : new HealthCheckResult(context.Registration.FailureStatus, "service is unhealthy or removed");
         }
     }
 }

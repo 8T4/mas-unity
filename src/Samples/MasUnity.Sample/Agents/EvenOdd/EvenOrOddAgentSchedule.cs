@@ -7,7 +7,9 @@ namespace MasUnity.Sample.Agents.EvenOdd
     {
         public DateTimeOffset? NextOccurrence()
         {
-            return DateTimeOffset.Now.AddSeconds(10);
+            var random = new Random();
+            random.Next(1, 10);
+            return DateTimeOffset.Now.AddSeconds(random.Next(1, 10));
         }
     }
 }

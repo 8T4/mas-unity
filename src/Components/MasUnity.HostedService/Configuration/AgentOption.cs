@@ -1,4 +1,4 @@
-using MasUnity.Cluster;
+using MasUnity.Commons.Scheduling;
 using MasUnity.Decision.Abstractions;
 using MasUnity.HostedService.Contracts;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,14 +25,36 @@ namespace MasUnity.HostedService.Configuration
         {
             Services = services;
             Instances = instances;
-            Services.AddTransient<T>();
+        }
 
-            for (var instance = 0; instance < instances; instance++)
+        public void Build()
+        {
+            Services.AddTransient<T>();
+            
+            for (var instance = 0; instance < Instances; instance++)
             {
                 Services.AddSingleton<IHostedService, AgentHostedService<T>>();
-            }
+            }            
         }
     }
+    
+    /// <summary>
+    /// Schedule Injection Scopes
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public sealed partial class AgentOption<T> where T : class, IAgent
+    {
+        /// <summary>
+        /// Add Singleton instance of Action
+        /// </summary>
+        /// <typeparam name="TS">Service</typeparam>
+        /// <returns></returns>        
+        public AgentOption<T> WithSchedule<TS>() where TS : class, ISchedule
+        {
+            Services.TryAddTransient<TS>();
+            return this;
+        }
+    }    
 
     /// <summary>
     /// Actions Injection Scopes

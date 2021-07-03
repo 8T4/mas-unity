@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using MasUnity.Cluster;
 using MasUnity.Decision.Abstractions;
+using MasUnity.HostedService.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: ExcludeFromCodeCoverage]
@@ -11,18 +12,19 @@ namespace MasUnity.HostedService.Configuration
     /// </summary>
     public sealed class AgentClusterOption
     {
-        private IServiceCollection ServiceCollection { get; }
+        private IServiceCollection Services { get; }
 
-        public AgentClusterOption(IServiceCollection serviceCollection)
+        public AgentClusterOption(IServiceCollection services)
         {
-            ServiceCollection = serviceCollection;
-            ServiceCollection.AddSingleton<IAgentStorage, AgentInMemoryStorage>();
-            ServiceCollection.AddSingleton<IAgentCluster, AgentCluster>();            
+            Services = services;
+            Services.AddSingleton<IAgentStorage, AgentInMemoryStorage>();
+            Services.AddSingleton<IAgentCluster, AgentCluster>();
+            Services.AddSingleton<IAgentServiceScope, AgentServiceScope>();
         }
         
         public AgentOption<T> AddAgent<T>(int instances = 1) where T : class, IAgent
         {
-            return new AgentOption<T>(ServiceCollection, instances);
+            return new AgentOption<T>(Services, instances);
         }        
     }
 }

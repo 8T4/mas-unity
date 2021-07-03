@@ -35,9 +35,8 @@ namespace MasUnity.Agents
 
             while (State.Value == AgentStates.Active)
             {
-                await Schedule.Execute(this, async () => await ExecuteActions());
-                var seconds = Report.NextExecution?.Subtract(DateTimeOffset.Now) ?? TimeSpan.FromSeconds(5);
-                Thread.Sleep(seconds);
+                await Schedule.Execute(this, async () => await ExecuteActions()).ConfigureAwait(false);
+                Schedule.Sleep(this);
             }
         }
 

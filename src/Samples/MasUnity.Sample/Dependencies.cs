@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Reflection;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -15,8 +18,29 @@ namespace MasUnity.Sample
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Api", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "MAS Unity API",
+                    Version = "v1",
+                    Description = "An API to perform MAS",
+                    TermsOfService = new Uri("https://github.com/8T4/mas-unity"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Yan Justino",
+                        Email = "contato@yanjustino.com",
+                        Url = new Uri("https://www.linkedin.com/in/yanjustino/"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "MAS Unity API LICENSE",
+                        Url = new Uri("https://github.com/8T4/mas-unity/blob/main/LICENSE"),
+                    }
+                });                
                 c.UseInlineDefinitionsForEnums();
+                
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);                
             });
         }
         

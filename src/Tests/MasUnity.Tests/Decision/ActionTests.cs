@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using FluentAssertions;
 using MasUnity.Decision.Actions;
 using Xunit;
@@ -7,9 +8,9 @@ namespace MasUnity.Tests.Decision
     public class ActionTests
     {
         [Fact]
-        public void Test_perception_assertion()
+        public async Task Test_perception_assertion()
         {
-            var perception = Perception.Assertion(() => true);
+            var perception = await Perception.Assertion(() => true);
 
             perception.IsFalse.Should().BeFalse();
             perception.IsTrue.Should().BeTrue();

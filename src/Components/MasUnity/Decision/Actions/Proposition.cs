@@ -1,5 +1,3 @@
-using System;
-
 namespace MasUnity.Decision.Actions
 {
     /// <summary>

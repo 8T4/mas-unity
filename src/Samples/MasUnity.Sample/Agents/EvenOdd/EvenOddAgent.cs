@@ -1,22 +1,23 @@
 using System.Collections.Generic;
 using MasUnity.Agents;
 using MasUnity.Decision.Abstractions;
+using MasUnity.HostedService.Contracts;
 using MasUnity.Sample.Agents.EvenOdd.Actions;
 
 namespace MasUnity.Sample.Agents.EvenOdd
 {
     public class OddAgent: ProactiveAgent
     {
-        private readonly SayNumberIsOdd _sayNumberIsOdd;
+        private IAgentServiceScope Scope { get; }
 
-        public OddAgent(SayNumberIsOdd sayNumberIsOdd) : base(new EvenOrOddAgentSchedule())
+        public OddAgent(IAgentServiceScope scope, EvenOrOddAgentSchedule schedule) : base(schedule)
         {
-            _sayNumberIsOdd = sayNumberIsOdd;
+            Scope = scope;
         }
 
         protected override IEnumerable<IAction> RegisterActions()
         {
-            yield return _sayNumberIsOdd;
+            yield return Scope.GetService<SayNumberIsOdd>();
         }
     }
 }

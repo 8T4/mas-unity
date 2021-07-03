@@ -1,5 +1,4 @@
 using System;
-using MasUnity.Cluster;
 using MasUnity.Decision.Abstractions;
 
 namespace MasUnity.Decision

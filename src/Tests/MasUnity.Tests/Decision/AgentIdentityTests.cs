@@ -1,5 +1,4 @@
 using FluentAssertions;
-using MasUnity.Cluster;
 using MasUnity.Decision;
 using MasUnity.Tests.Stubs;
 using Xunit;

@@ -14,15 +14,10 @@ namespace MasUnity.Decision
         {
             if (State.Value != AgentStates.Initiated) return;
             
-            var tasks = new List<Task>
-            {
-                OnInvoke(),
-                Run()
-            };
-
             await BeforeInvoke().ConfigureAwait(false);
             State.SetState(AgentStates.Active);
-            await Task.WhenAll(tasks).ConfigureAwait(false);
+            await OnInvoke().ConfigureAwait(false);
+            await Run().ConfigureAwait(false);
             await AfterInvoke().ConfigureAwait(false);
         }
 
@@ -50,15 +45,10 @@ namespace MasUnity.Decision
         {
             if (State.Value != AgentStates.Suspended) return;
             
-            var tasks = new List<Task>
-            {
-                OnResume(),
-                Run()
-            };            
-
             await BeforeResume().ConfigureAwait(false);
             State.SetState(AgentStates.Active);
-            await Task.WhenAll(tasks).ConfigureAwait(false);            
+            await OnResume().ConfigureAwait(false);
+            await Run().ConfigureAwait(false);
             await AfterResume().ConfigureAwait(false);
         }
 
@@ -76,15 +66,10 @@ namespace MasUnity.Decision
         {
             if (State.Value != AgentStates.Waiting) return;
             
-            var tasks = new List<Task>
-            {
-                OnWakeUp(),
-                Run()
-            };  
-
             await BeforeWakeUp().ConfigureAwait(false);
             State.SetState(AgentStates.Active);
-            await Task.WhenAll(tasks).ConfigureAwait(false);  
+            await OnWakeUp().ConfigureAwait(false);
+            await Run().ConfigureAwait(false);
             await AfterWakeUp().ConfigureAwait(false);
         }
 
@@ -101,16 +86,11 @@ namespace MasUnity.Decision
         public async Task Execute()
         {
             if (State.Value != AgentStates.Transit) return;
-            
-            var tasks = new List<Task>
-            {
-                OnExecute(),
-                Run()
-            };              
 
             await BeforeExecute().ConfigureAwait(false);
             State.SetState(AgentStates.Active);
-            await Task.WhenAll(tasks).ConfigureAwait(false);
+            await OnExecute().ConfigureAwait(false);
+            await Run().ConfigureAwait(false);
             await AfterExecute().ConfigureAwait(false);
         }
 

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using MasUnity.Agents;
-using MasUnity.Commons.Scheduling;
 using MasUnity.Decision.Abstractions;
 using MasUnity.Decision.Actions;
 using MasUnity.Tests.Stubs.Actions;

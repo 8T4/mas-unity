@@ -10,11 +10,9 @@ namespace MasUnity.Tests.Stubs.Actions
     {
         public Task<Perception> Realize(CancellationToken cancellation)
         {
-            var result = Perception.Assertion(
+            return Perception.Assertion(
                 ("Can say Goodby?", true)
             );
-
-            return Task.FromResult(result);
         }
 
         public Task<AgentResult> Execute(AgentContext context, CancellationToken cancellation)

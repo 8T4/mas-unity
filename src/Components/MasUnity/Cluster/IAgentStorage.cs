@@ -11,6 +11,7 @@ namespace MasUnity.Cluster
     public interface IAgentStorage
     {
         Task Add(string uri, IAgent agent);
+        Task Remove(string uri);
         Task<IAgent> Get(string uri);
         Task<IEnumerable<IAgent>> GetAll();
         int Count();

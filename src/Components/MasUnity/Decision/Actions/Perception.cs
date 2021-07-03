@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MasUnity.Decision.Actions
 {
@@ -26,20 +27,22 @@ namespace MasUnity.Decision.Actions
             Value = value;
         }
         
-        public static Perception Assertion(params (string description, bool value)[] propositions)
+        public static Task<Perception> Assertion(params (string description, bool value)[] propositions)
         {
             var p = propositions.Select(q => Proposition.Assertion(q.description, q.value));
             return Assertion(p.ToArray());
         }
 
-        private static Perception Assertion(params Proposition[] propositions)
+        private static Task<Perception> Assertion(params Proposition[] propositions)
         {
-            return new Perception(propositions.All(p => p.IsTrue));
+            var result = new Perception(propositions.All(p => p.IsTrue));
+            return Task.FromResult(result);
         }
 
-        public static Perception Assertion(Func<bool> func)
+        public static Task<Perception> Assertion(Func<bool> func)
         {
-            return new Perception(func.Invoke());
+            var result = new Perception(func.Invoke());
+            return Task.FromResult(result);
         }
     }
 }

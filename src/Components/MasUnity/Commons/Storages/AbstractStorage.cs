@@ -19,6 +19,16 @@ namespace MasUnity.Commons.Storages
             return Task.CompletedTask;
         }
 
+        protected Task Delete(string uri)
+        {
+            if (Agents.ContainsKey(uri))
+            {
+                Agents.Remove(uri);
+            }
+            
+            return Task.CompletedTask;
+        }
+
         public Task<T> Get(string uri)
         {
             var result = Agents.ContainsKey(uri) ? Agents[uri] : default;

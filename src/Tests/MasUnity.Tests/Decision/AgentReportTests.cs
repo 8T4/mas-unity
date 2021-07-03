@@ -2,7 +2,6 @@ using System;
 using FluentAssertions;
 using MasUnity.Decision;
 using Xunit;
-using Xunit.Sdk;
 
 namespace MasUnity.Tests.Decision
 {
