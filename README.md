@@ -1,5 +1,5 @@
 <p align="center">
-  <img width=192" src="https://raw.githubusercontent.com/8T4/mas-unity/main/docs/imgs/512w/logo.png" />
+  <img width=192" src="https://raw.githubusercontent.com/8T4/mas-unity/main/docs/imgs/logo.png" />
 </p>
 
 # mas-unity
