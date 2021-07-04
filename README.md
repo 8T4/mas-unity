@@ -15,8 +15,8 @@ This package is available through [Nuget Packages](https://www.nuget.org/package
 | Package |  Description | Version | Downloads |
 | ------- | ----- | ----- | ----- |
 | `MasUnity` | provides structures and services to performs agent tasks | [![NuGet](https://img.shields.io/nuget/v/masunity.svg)](https://nuget.org/packages/masunity) | [![Nuget](https://img.shields.io/nuget/dt/masunity.svg)](https://nuget.org/packages/masunity) |
-| `MasUnity.HostedService` | provides an execution and monitoring environment | [![NuGet](https://img.shields.io/nuget/v/MasUnity.HostedService.svg)](https://nuget.org/packages/MasUnity.HostedService) | [![Nuget](https://img.shields.io/nuget/dt/MasUnity.HostedService.svg)](https://nuget.org/packages/MasUnity.HostedService) |
-| `MasUnity.HealthCheck` | provides an execution and monitoring environment | [![NuGet](https://img.shields.io/nuget/v/MasUnity.HealthCheck.svg)](https://nuget.org/packages/MasUnity.HealthCheck) | [![Nuget](https://img.shields.io/nuget/dt/MasUnity.HealthCheck.svg)](https://nuget.org/packages/MasUnity.HealthCheck) |
+| `MasUnity.HostedService` | provides an execution environment to agent | [![NuGet](https://img.shields.io/nuget/v/MasUnity.HostedService.svg)](https://nuget.org/packages/MasUnity.HostedService) | [![Nuget](https://img.shields.io/nuget/dt/MasUnity.HostedService.svg)](https://nuget.org/packages/MasUnity.HostedService) |
+| `MasUnity.HealthCheck` | provides a monitoring environment to agent | [![NuGet](https://img.shields.io/nuget/v/MasUnity.HealthCheck.svg)](https://nuget.org/packages/MasUnity.HealthCheck) | [![Nuget](https://img.shields.io/nuget/dt/MasUnity.HealthCheck.svg)](https://nuget.org/packages/MasUnity.HealthCheck) |
                  
 
                                                                                                
