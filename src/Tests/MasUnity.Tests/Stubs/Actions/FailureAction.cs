@@ -9,7 +9,7 @@ namespace MasUnity.Tests.Stubs.Actions
 {
     public class FailureAction: IAction
     {
-        public Task<Perception> Realize(CancellationToken cancellation)
+        public Task<Perception> Realize(AgentContext context, CancellationToken cancellation)
         {
             return Perception.Assertion(
                 ("Can say Goodby?", true)
@@ -24,7 +24,7 @@ namespace MasUnity.Tests.Stubs.Actions
     
     public class SkypAction: IAction
     {
-        public Task<Perception> Realize(CancellationToken cancellation)
+        public Task<Perception> Realize(AgentContext context, CancellationToken cancellation)
         {
             return Perception.Assertion(
                 ("Can say Goodby?", false)
@@ -39,7 +39,7 @@ namespace MasUnity.Tests.Stubs.Actions
     
     public class CancellationTokenAction: IAction
     {
-        public Task<Perception> Realize(CancellationToken cancellation)
+        public Task<Perception> Realize(AgentContext context, CancellationToken cancellation)
         {
             return Perception.Assertion(
                 ("Can say Goodby?", true)

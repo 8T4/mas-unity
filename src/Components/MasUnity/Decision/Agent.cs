@@ -70,7 +70,7 @@ namespace MasUnity.Decision
         private async Task ExecuteAction(IAction action, CancellationToken token)
         {
             var context = new AgentContext(Identity, State);
-            var perception = await action.Realize(token).ConfigureAwait(false);
+            var perception = await action.Realize(context, token).ConfigureAwait(false);
             if (perception.IsFalse) return;
             Report.Result.Merge(await action.Execute(context, token).ConfigureAwait(false));
         }

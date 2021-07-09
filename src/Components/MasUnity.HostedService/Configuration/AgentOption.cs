@@ -14,24 +14,24 @@ namespace MasUnity.HostedService.Configuration
     public sealed partial class AgentOption<T> where T : class, IAgent
     {
         public IServiceCollection Services { get; }
-        public int Instances { get; }
+        public int Partitions { get; }
 
         /// <summary>
         /// Add a Transient Agent and Singleton instances of Hosted services
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="instances">number of instances</param>
-        public AgentOption(IServiceCollection services, int instances = 1)
+        /// <param name="partitions">number of partition</param>
+        public AgentOption(IServiceCollection services, int partitions = 1)
         {
             Services = services;
-            Instances = instances;
+            Partitions = partitions;
         }
 
         public void Build()
         {
             Services.AddTransient<T>();
             
-            for (var instance = 0; instance < Instances; instance++)
+            for (var partition = 0; partition < Partitions; partition++)
             {
                 Services.AddSingleton<IHostedService, AgentHostedService<T>>();
             }            
@@ -45,7 +45,7 @@ namespace MasUnity.HostedService.Configuration
     public sealed partial class AgentOption<T> where T : class, IAgent
     {
         /// <summary>
-        /// Add Singleton instance of Action
+        /// Add Transient instance of Action
         /// </summary>
         /// <typeparam name="TS">Service</typeparam>
         /// <returns></returns>        
@@ -63,7 +63,7 @@ namespace MasUnity.HostedService.Configuration
     public sealed partial class AgentOption<T> where T : class, IAgent
     {
         /// <summary>
-        /// Add Singleton instance of Action
+        /// Add Transient instance of Action
         /// </summary>
         /// <typeparam name="TS">Service</typeparam>
         /// <typeparam name="TI">Implementation</typeparam>
@@ -75,7 +75,7 @@ namespace MasUnity.HostedService.Configuration
         }
 
         /// <summary>
-        /// Add Singleton instance of Action
+        /// Add Transient instance of Action
         /// </summary>
         /// <typeparam name="TS">Service</typeparam>
         /// <returns></returns>        
@@ -93,7 +93,7 @@ namespace MasUnity.HostedService.Configuration
     public sealed partial class AgentOption<T> where T : class, IAgent
     {
         /// <summary>
-        /// Add Singleton instance of Knowledge
+        /// Add Transient instance of Knowledge
         /// </summary>
         /// <typeparam name="TS">Service</typeparam>
         /// <typeparam name="TI">Implementation</typeparam>
@@ -105,7 +105,7 @@ namespace MasUnity.HostedService.Configuration
         }
         
         /// <summary>
-        /// Add Singleton instance of Knowledge
+        /// Add Transient instance of Knowledge
         /// </summary>
         /// <typeparam name="TS">Service</typeparam>
         /// <returns></returns>        
@@ -115,4 +115,34 @@ namespace MasUnity.HostedService.Configuration
             return this;
         }
     }    
+    
+    /// <summary>
+    /// Knowledge Injection Scopes
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public sealed partial class AgentOption<T> where T : class, IAgent
+    {
+        /// <summary>
+        /// Add Transient instance of Knowledge
+        /// </summary>
+        /// <typeparam name="TS">Service</typeparam>
+        /// <typeparam name="TI">Implementation</typeparam>
+        /// <returns></returns>
+        public AgentOption<T> WithEnvironment<TS, TI>() where TS : class, IEnvironment where TI : class, TS
+        {
+            Services.TryAddTransient<TS, TI>();
+            return this;
+        }
+        
+        /// <summary>
+        /// Add Transient instance of Knowledge
+        /// </summary>
+        /// <typeparam name="TS">Service</typeparam>
+        /// <returns></returns>        
+        public AgentOption<T> WithEnvironment<TS>() where TS : class, IEnvironment
+        {
+            Services.TryAddTransient<TS>();
+            return this;
+        }
+    }        
 }

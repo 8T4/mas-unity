@@ -8,7 +8,7 @@ namespace MasUnity.Tests.Stubs.Actions
 {
     public class SayGoodByAction : IAction
     {
-        public Task<Perception> Realize(CancellationToken cancellation)
+        public Task<Perception> Realize(AgentContext context, CancellationToken cancellation)
         {
             return Perception.Assertion(
                 ("Can say Goodby?", true)

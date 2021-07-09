@@ -9,57 +9,54 @@ namespace MasUnity.Tests.Decision
 {
     public class AgentLifeCycleTests
     {
-        private readonly SynchronousReactiveAgentStub _stub;
-
-        public AgentLifeCycleTests()
-        {
-            _stub = new SynchronousReactiveAgentStub();
-        }
-        
         [Fact]
         public async Task Test_agent_lifecycle()
         {
-            _stub.State.Value.Should().Be(AgentStates.Initiated);
-            await _stub.Invoke();
-            _stub.State.Value.Should().Be(AgentStates.Active);
-            await _stub.Suspend();
-            _stub.State.Value.Should().Be(AgentStates.Suspended);
-            await _stub.Resume();
-            _stub.State.Value.Should().Be(AgentStates.Active);
-            await _stub.Wait();
-            _stub.State.Value.Should().Be(AgentStates.Waiting); 
-            await _stub.WakeUp();
-            _stub.State.Value.Should().Be(AgentStates.Active);
-            await _stub.Move();
-            _stub.State.Value.Should().Be(AgentStates.Transit); 
-            await _stub.Execute();
-            _stub.State.Value.Should().Be(AgentStates.Active);
-            await _stub.Quit();
-            _stub.State.Value.Should().Be(AgentStates.Deleted);
+            var stub = new SynchronousReactiveAgentStub();
+
+            stub.State.Value.Should().Be(AgentStates.Initiated);
+            await stub.Invoke();
+            stub.State.Value.Should().Be(AgentStates.Active);
+            await stub.Suspend();
+            stub.State.Value.Should().Be(AgentStates.Suspended);
+            await stub.Resume();
+            stub.State.Value.Should().Be(AgentStates.Active);
+            await stub.Wait();
+            stub.State.Value.Should().Be(AgentStates.Waiting); 
+            await stub.WakeUp();
+            stub.State.Value.Should().Be(AgentStates.Active);
+            await stub.Move();
+            stub.State.Value.Should().Be(AgentStates.Transit); 
+            await stub.Execute();
+            stub.State.Value.Should().Be(AgentStates.Active);
+            await stub.Quit();
+            stub.State.Value.Should().Be(AgentStates.Deleted);
         }
         
         [Fact]
         public async Task Test_agent_lifecycle_move_next()
         {
-            _stub.State.Value.Should().Be(AgentStates.Initiated);
-            await _stub.Suspend();
-            _stub.State.Value.Should().Be(AgentStates.Initiated);
-            await _stub.Suspend(new Exception());
-            _stub.State.Value.Should().Be(AgentStates.Initiated);            
-            await _stub.Resume();
-            _stub.State.Value.Should().Be(AgentStates.Initiated);
-            await _stub.Wait();
-            _stub.State.Value.Should().Be(AgentStates.Initiated); 
-            await _stub.WakeUp();
-            _stub.State.Value.Should().Be(AgentStates.Initiated);
-            await _stub.Move();
-            _stub.State.Value.Should().Be(AgentStates.Initiated); 
-            await _stub.Execute();
-            _stub.State.Value.Should().Be(AgentStates.Initiated);
-            await _stub.Quit();
-            _stub.State.Value.Should().Be(AgentStates.Deleted);
-            await _stub.Invoke();
-            _stub.State.Value.Should().Be(AgentStates.Deleted);            
+            var stub = new SynchronousReactiveAgentStub();
+            
+            stub.State.Value.Should().Be(AgentStates.Initiated);
+            await stub.Suspend();
+            stub.State.Value.Should().Be(AgentStates.Initiated);
+            await stub.Suspend(new Exception());
+            stub.State.Value.Should().Be(AgentStates.Initiated);            
+            await stub.Resume();
+            stub.State.Value.Should().Be(AgentStates.Initiated);
+            await stub.Wait();
+            stub.State.Value.Should().Be(AgentStates.Initiated); 
+            await stub.WakeUp();
+            stub.State.Value.Should().Be(AgentStates.Initiated);
+            await stub.Move();
+            stub.State.Value.Should().Be(AgentStates.Initiated); 
+            await stub.Execute();
+            stub.State.Value.Should().Be(AgentStates.Initiated);
+            await stub.Quit();
+            stub.State.Value.Should().Be(AgentStates.Deleted);
+            await stub.Invoke();
+            stub.State.Value.Should().Be(AgentStates.Deleted);            
         }        
     }
 }

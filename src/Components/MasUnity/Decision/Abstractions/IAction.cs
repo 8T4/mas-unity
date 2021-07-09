@@ -17,7 +17,7 @@ namespace MasUnity.Decision.Abstractions
     /// </summary>
     public interface IAction
     {
-        Task<Perception> Realize(CancellationToken cancellation);
+        Task<Perception> Realize(AgentContext context, CancellationToken cancellation);
         
         Task<AgentResult> Execute(AgentContext context, CancellationToken cancellation);
     }

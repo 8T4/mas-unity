@@ -13,9 +13,9 @@ namespace MasUnity.HealthCheck.Configuration
         public static AgentOption<T> WithHealtCheck<T>(this AgentOption<T> agent) 
             where T : class, IAgent
         {
-            for (var instance = 0; instance < agent.Instances; instance++)
+            for (var partition = 0; partition < agent.Partitions; partition++)
             {
-                var identity = AgentIdentity.GetIdentity<T>(instance);
+                var identity = AgentIdentity.GetIdentity<T>(partition);
                 agent.Services.AddHealthChecks().AddCheck<AgentHealthCheck<T>>(identity.Uri);
             }
 
