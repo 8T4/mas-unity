@@ -5,7 +5,7 @@ using Xunit;
 
 namespace MasUnity.Tests.Decision
 {
-    public class ActionTests
+    public class PerceptionTests
     {
         [Fact]
         public async Task Test_perception_assertion()
@@ -15,6 +15,20 @@ namespace MasUnity.Tests.Decision
             perception.IsFalse.Should().BeFalse();
             perception.IsTrue.Should().BeTrue();
         }
+        
+        [Fact]
+        public async Task Test_perception_assertion_with_whennotrealize_method_defined()
+        {
+            var perception = await Perception.Assertion(() => false);
+            
+            await perception.IfNotRealize(() =>
+            {
+                Assert.True(true, "IfNotRealize was called");
+            });
+
+            perception.IsFalse.Should().BeTrue();
+            perception.IsTrue.Should().BeFalse();
+        }        
         
         [Fact]
         public void Test_proposition_assertion()

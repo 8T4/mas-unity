@@ -74,7 +74,7 @@ namespace MasUnity.Decision
             
             if (perception.IsFalse)
             {
-                perception.WhenNotRealize?.Invoke();
+                perception.NotRealizeAction?.Invoke();
                 return;
             }
             
