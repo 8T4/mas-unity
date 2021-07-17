@@ -21,11 +21,23 @@ namespace MasUnity.Decision.Actions
         private bool Value { get; }
         public bool IsTrue => Value;
         public bool IsFalse => !Value;
+        internal Action WhenNotRealize { get; private set; }
         
         private Perception(bool value)
         {
             Value = value;
+            WhenNotRealize = () => { };
         }
+        
+        public Task<Perception> IfNotRealize(Action action)
+        {
+            if (IsFalse)
+            {
+                WhenNotRealize = action;
+            }
+
+            return Task.FromResult(this);
+        }        
         
         public static Task<Perception> Assertion(params (string description, bool value)[] propositions)
         {

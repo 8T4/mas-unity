@@ -71,7 +71,13 @@ namespace MasUnity.Decision
         {
             var context = new AgentContext(Identity, State);
             var perception = await action.Realize(context, token).ConfigureAwait(false);
-            if (perception.IsFalse) return;
+            
+            if (perception.IsFalse)
+            {
+                perception.WhenNotRealize?.Invoke();
+                return;
+            }
+            
             Report.Result.Merge(await action.Execute(context, token).ConfigureAwait(false));
         }
     }
