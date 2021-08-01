@@ -1,13 +1,12 @@
 using System;
 using System.Threading.Tasks;
-using MasUnity.Decision.Abstractions;
 
 namespace MasUnity.Decision
 {
     /// <summary>
     /// Life cycle
     /// </summary>
-    public abstract partial class Agent : IAgent
+    public abstract partial class Agent
     {
         //Invoke
         protected virtual Task BeforeInvoke() => Task.CompletedTask;

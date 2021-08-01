@@ -21,8 +21,24 @@ namespace MasUnity.HostedService.Configuration
             Services.AddSingleton<IAgentCluster, AgentCluster>();
             Services.AddSingleton<IAgentServiceScope, AgentServiceScope>();
         }
+
+        /// <summary>
+        /// Add new agent
+        /// </summary>
+        /// <typeparam name="T">IAgent</typeparam>
+        /// <returns></returns>
+        public AgentOption<T> AddAgent<T>() where T : class, IAgent
+        {
+            return new AgentOption<T>(Services, 1);
+        }        
         
-        public AgentOption<T> AddAgent<T>(int instances = 1) where T : class, IAgent
+        /// <summary>
+        /// Add new agent
+        /// </summary>
+        /// <param name="instances">number of instances</param>
+        /// <typeparam name="T">IAgent</typeparam>
+        /// <returns></returns>
+        public AgentOption<T> AddAgent<T>(int instances) where T : class, IAgent
         {
             return new AgentOption<T>(Services, instances);
         }        

@@ -21,7 +21,7 @@ namespace MasUnity.HostedService.Configuration
         /// </summary>
         /// <param name="services"></param>
         /// <param name="partitions">number of partition</param>
-        public AgentOption(IServiceCollection services, int partitions = 1)
+        public AgentOption(IServiceCollection services, int partitions)
         {
             Services = services;
             Partitions = partitions;

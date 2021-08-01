@@ -21,7 +21,7 @@ namespace MasUnity.HealthCheck.Contracts
 
             if (agent == null)
             {
-                return new HealthCheckResult(HealthStatus.Degraded, "service was removed");
+                return new HealthCheckResult(HealthStatus.Degraded, $"Agent service was removed");
             }
 
             return agent.Report.Result.IsSuccess

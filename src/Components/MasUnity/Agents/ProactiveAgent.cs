@@ -35,7 +35,8 @@ namespace MasUnity.Agents
 
             while (State.Value == AgentStates.Active)
             {
-                await Schedule.Execute(this, async () => await ExecuteActions()).ConfigureAwait(false);
+                async void Action() => await ExecuteActions().ConfigureAwait(false);
+                await Schedule.Execute(this, Action).ConfigureAwait(false);
                 Schedule.Sleep(this);
             }
         }

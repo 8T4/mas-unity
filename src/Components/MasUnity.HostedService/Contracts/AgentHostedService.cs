@@ -22,10 +22,16 @@ namespace MasUnity.HostedService.Contracts
             var provider = scope.ServiceProvider;
 
             var agent = provider.GetService<T>();
-            if (agent == null) return Task.CompletedTask;
+            if (agent == null)
+            {
+                return Task.CompletedTask;
+            }
 
             var cluster = provider.GetService<IAgentCluster>();
-            if (cluster == null) return Task.CompletedTask;
+            if (cluster == null)
+            {
+                return Task.CompletedTask;
+            }
 
             cluster.Register(agent);
             Task.Run(agent.Invoke, stoppingToken);

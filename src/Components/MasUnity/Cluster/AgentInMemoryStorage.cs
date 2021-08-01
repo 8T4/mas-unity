@@ -13,7 +13,7 @@ namespace MasUnity.Cluster
     {
         private Dictionary<string, int> Sequences { get; }
 
-        public AgentInMemoryStorage():base()
+        public AgentInMemoryStorage()
         {
             Sequences = new Dictionary<string, int>();
         }

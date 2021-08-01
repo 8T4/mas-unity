@@ -19,9 +19,11 @@ namespace MasUnity.Tests.Commons
         {
             var date = _schedule.NextOccurrence();
 
-            if (date == null) return;
-            DateTimeOffset.Now.AddSeconds(1).Should().BeBefore(date.Value);
-            DateTimeOffset.Now.AddSeconds(3).Should().BeAfter(date.Value);
+            if (date != null)
+            {
+                DateTimeOffset.Now.AddSeconds(1).Should().BeBefore(date.Value);
+                DateTimeOffset.Now.AddSeconds(3).Should().BeAfter(date.Value);
+            }
         }
     }
 }
