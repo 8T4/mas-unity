@@ -18,10 +18,14 @@ namespace MasUnity.Decision
         public void UpdateNextExecution(DateTimeOffset? nextExecution)
         {
             if (nextExecution == null)
+            {
                 throw new ArgumentNullException($"{nameof(nextExecution)} value is required");
-            
+            }
+
             if (NextExecution != null && nextExecution.Value < NextExecution.Value)
+            {
                 throw new ArgumentException($"Then {nameof(nextExecution)} should be great the current next execution");
+            }
 
             NextExecution = nextExecution;
         }
