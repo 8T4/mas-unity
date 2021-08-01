@@ -5,9 +5,10 @@
     <br/>
     <br/>
     <a href='https://github.com/8T4/mas-unity/actions/workflows/dotnet.yml'><img src="https://github.com/8T4/mas-unity/actions/workflows/dotnet.yml/badge.svg"></a>
-    <a href='https://github.com/8T4/gwtdo/actions/workflows/codeql-analysis.yml'><img src="https://github.com/8T4/gwtdo/actions/workflows/codeql-analysis.yml/badge.svg"></a>
-    <a href='https://www.codacy.com/gh/8T4/gwtdo/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=8T4/gwtdo&amp;utm_campaign=Badge_Grade'> <img src="https://app.codacy.com/project/badge/Grade/51e1962835f24f65a3813d078061a9ef"></a>
+    <a href='https://github.com/8T4/mas-unity/actions/workflows/codeql-analysis.yml'><img src="https://github.com/8T4/mas-unity/actions/workflows/codeql-analysis.yml/badge.svg"></a>
+    <a href='https://www.codacy.com/gh/8T4/mas-unity/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=8T4/mas-unity&amp;utm_campaign=Badge_Grade'> <img src="https://app.codacy.com/project/badge/Grade/9e726551ed8f4414819d38e277a21a8f"></a>
 </p>
+
 
 ### Instalation
 This package is available through [Nuget Packages](https://www.nuget.org/packages?q=masunity).
@@ -18,9 +19,7 @@ This package is available through [Nuget Packages](https://www.nuget.org/package
 | `MasUnity.HostedService` | provides an execution environment to agent | [![NuGet](https://img.shields.io/nuget/v/MasUnity.HostedService.svg)](https://nuget.org/packages/MasUnity.HostedService) | [![Nuget](https://img.shields.io/nuget/dt/MasUnity.HostedService.svg)](https://nuget.org/packages/MasUnity.HostedService) |
 | `MasUnity.HealthCheck` | provides a monitoring environment to agent | [![NuGet](https://img.shields.io/nuget/v/MasUnity.HealthCheck.svg)](https://nuget.org/packages/MasUnity.HealthCheck) | [![Nuget](https://img.shields.io/nuget/dt/MasUnity.HealthCheck.svg)](https://nuget.org/packages/MasUnity.HealthCheck) |
                  
-
-                                                                                               
-
+                                                                                             
 # Multi-agent systems (MAS)
 
 Multi-agent systems are gradually becoming a new paradigm for developing distributed computing systems. This paradigm provides an appropriate architecture for the design and implementation of integrative business information systems as it addresses adequately the crucial requirements of coordination which, as discussed above, is central to the IBIS paradigm [1].
@@ -37,6 +36,10 @@ MAS Unity (MU) provides structures to build applications based on DAI (distribut
 How shown in Figure 1, MU Architecture can be divided into three distinct layers: Decision Layer, Application Layer, and Host Layer. the Decision Layer provides structures and services to performs agent tasks; the Application Layer contains de domain scope used by agents; the Host Layer provides an execution and monitoring environment.
 
 # How to use
+
+Just check our [Sample Project](https://github.com/8T4/mas-unity-sample) for more details of how to use MAS Unity in your applications.    
+
+                                                                                            
 
 # References
 
